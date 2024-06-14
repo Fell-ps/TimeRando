@@ -1,26 +1,45 @@
-import random
 import itertools
 from turmas import Turmas
 
 turno = input('Digite o turno o qual deseja gerar as combinações: ')
-serie = input(f'Digite a série das turmas do perído {turno.lower()}: ')
-turmas_mat = ['6A', '6B', '7A', '7B']
-turmas_vesp = ['8A', '8B', '9A', '9B']
+serie = input(f'Digite o número da série {turno.lower()}: ')
 
+turnoDict = {'mat': 'matutino',
+             'vesp': 'vespertino'}
+
+seriesMap = {
+    6: {
+
+    }
+}
 # Gera as combinacoes possiveis de jogos para cada turma
-def combinacao():
+def geraJogos():
 
-    if turno == 'matutino' or turno == 'Matutino' or turno == 'MATUTINO':
-        combinacao_mat = list(itertools.combinations(turmas_mat, 2))
-        print(f"Primeiro Turno: {combinacao_mat}")
-    elif turno == 'vespertino' or turno == 'VESPERTINO' or turno == 'Vespertino':
-        combinacao_vesp = list(itertools.combinations(turmas_vesp, 2))
-        print(f"Primeiro Turnooo: {combinacao_vesp}")
+    if turno == turnoDict['mat']:
+        if serie == '6':
+            Turmas.tSexto = list(itertools.permutations(Turmas.tSexto, 2))
+            resultado = Turmas.tSexto
+            print(f'Possibilidades: {resultado}')
+        else:
+            Turmas.tSetimo = list(itertools.permutations(Turmas.tSetimo, 2))
+            resultado = Turmas.tSetimo
+            print(f'Possibilidades: {resultado}')
+    elif turno == turnoDict['vesp']:
+        if serie == '8':
+            Turmas.tOitavo = list(itertools.permutations(Turmas.tOitavo, 2))
+            resultado = Turmas.tOitavo
+            print(f'Possibilidades: {resultado}')
+        else:
+            Turmas.tNono = list(itertools.permutations(Turmas.tNono, 2))
+            resultado = Turmas.tNono
+            print(f'Possibilidades: {resultado}')
     else:
-        print('Erro: digite corretamente o turno desejado.')
+        print('Erro: Digite corretamente turno e série desejados')
+
+    try:
+        resultado
+    except:
+        print('Erro: Digite corretamente turno e série desejados')
 
 
-    return
-
-
-combinacao()
+geraJogos()
